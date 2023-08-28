@@ -14,6 +14,7 @@ https://www.youtube.com/watch?v=de_7k4SHEO0
 https://www.php.net/manual/es/function.ob-start.php
 https://www.php.net/manual/es/function.ob-get-clean.php
 https://www.php.net/manual/es/function.extract.php
+https://www.php.net/manual/es/mysqli-stmt.bind-param.php
 
 ===========================================================
 

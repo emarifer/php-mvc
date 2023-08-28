@@ -11,7 +11,7 @@ class HomeController extends ViewController
     {
         $contactModel = new Contact();
 
-        // return $contactModel->all();
+        return $contactModel->all();
 
         // INYECCIÓN SQL:
         // Daría igual que nombre colocara un usario malicioso, porque
