@@ -1,5 +1,7 @@
 <?php
 
+// declare(strict_types=1);
+
 require_once '../config/database.php';
 
 require_once '../autoload.php';
@@ -15,6 +17,13 @@ https://www.php.net/manual/es/function.ob-start.php
 https://www.php.net/manual/es/function.ob-get-clean.php
 https://www.php.net/manual/es/function.extract.php
 https://www.php.net/manual/es/mysqli-stmt.bind-param.php
+https://ashallendesign.co.uk/blog/using-declare-strict_types-1-for-more-robust-php-code#:~:text=declare(strict_types%3D1)%20is%20a%20statement%20that%20enforces%20strict,function%20parameters%20and%20return%20types.
+https://desarrollowp.com/blog/tutoriales/declara-strict-types-en-tus-ficheros-php/
+https://dev.to/rocksheep/the-way-stricttypes-works-in-php-eb7
+
+======================= ICONS SVG =========================
+https://www.shareicon.net/create-edit-pencil-write-843723
+https://www.svgrepo.com/svg/488148/delete
 
 ===========================================================
 

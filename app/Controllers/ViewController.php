@@ -25,6 +25,11 @@ class ViewController
             return 'The view does not exist';
         }
     }
+
+    public function redirect(string $route): void
+    {
+        header("Location: $route");
+    }
 }
 
 /* 
