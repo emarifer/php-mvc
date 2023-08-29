@@ -99,6 +99,15 @@ class Model
         return $this->query->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function paginate(int $lot = 15): array
+    {
+        $page = isset($_GET['page']) ?  (int) $_GET['page'] : 1;
+
+        $sql = "SELECT * FROM {$this->table} LIMIT " . ($page - 1) * $lot . ", $lot";
+
+        return $this->query($sql)->get();
+    }
+
     /* CRUD */
     public function all(): array
     {
