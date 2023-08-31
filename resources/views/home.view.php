@@ -9,11 +9,13 @@
     <link rel="shortcut icon" href="/img/new-php-logo.svg" type="image/svg+xml">
     <meta name="google" content="notranslate" />
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/output.css">
 </head>
 
 <body>
-    <h1><?= $description ?></h1>
+    <h1 class="text-center text-3xl font-bold mt-36 mb-6">
+        <?= $description ?>
+    </h1>
 </body>
 
 </html>

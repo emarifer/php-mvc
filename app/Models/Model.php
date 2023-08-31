@@ -103,9 +103,42 @@ class Model
     {
         $page = isset($_GET['page']) ?  (int) $_GET['page'] : 1;
 
-        $sql = "SELECT * FROM {$this->table} LIMIT " . ($page - 1) * $lot . ", $lot";
+        // Explicación de la sentencia:
+        // https://youtu.be/j6rZAHYsVtU?si=7uPobQPY1t6YJmrd&t=199
+        // https://conclase.net/mysql/curso/sqlfun/FOUND_ROWS
+        $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM {$this->table} LIMIT " . ($page - 1) * $lot . ", $lot";
+        // ¿Advertencia de deprecación de SQL_CALC_FOUND_ROWS y FOUND_ROWS?:
+        // https://dev.mysql.com/worklog/task/?id=12615
 
-        return $this->query($sql)->get();
+        $data = $this->query($sql)->get();
+
+        /* $total = $this->query("SELECT COUNT(*) as total FROM {$this->table}")->get(); EN LUGAR DE REPETIR ESTA SENTENCIA HACEMOS LO DE ABAJO */
+        $total = (int) $this->query("SELECT FOUND_ROWS() as total")->first()['total'];
+        // return $total;
+
+        // Recuperamos la URI para usarla en 'next_page_url' y 'prev_page_url'
+        $uri = $_SERVER['REQUEST_URI'];
+        $uri = trim($uri, '/');
+
+        // Verificación de queries de paginación
+        if (strpos($uri, '?') !== false) {
+            $uri = substr($uri, 0, strpos($uri, '?'));
+        }
+
+        $last_page = ceil($total / $lot);
+
+        // Para el cálculo de "from" usamos una fórmula similar que
+        // la que utilizamos para la paginación
+        return [
+            'total' => $total,
+            'from' => ($page - 1) * $lot + 1,
+            'to' => ($page - 1) * $lot + count($data),
+            'current_page' => $page,
+            'last_page' => $last_page,
+            'next_page_url' => $page < $last_page ? '/' . $uri . '?page=' . $page + 1 : null,
+            'prev_page_url' => $page > 1 ? '/' . $uri . '?page=' . $page - 1 : null,
+            'data' => $data,
+        ];
     }
 
     /* CRUD */

@@ -13,7 +13,9 @@
 </head>
 
 <body>
-    <h1><?= $description ?></h1>
+    <h1 class="text-center text-3xl font-bold mt-36 mb-6">
+        <?= $description ?>
+    </h1>
 
     <a href="/contacts/<?= $contact['id'] ?>/edit">
         Edit Contact

@@ -6,7 +6,7 @@ use app\Models\Contact;
 
 class ContactController extends ViewController
 {
-    public function index(): string /* | array */
+    public function index(): string
     {
         $title = 'Contacts';
         $description = 'Contact List';
@@ -14,8 +14,6 @@ class ContactController extends ViewController
         $contactModel = new Contact;
         // $contacts = $contactModel->all();
         $contacts = $contactModel->paginate(3);
-
-        // return $contacts;
 
         return $this->view('contacts-index.view', compact(
             'title',
